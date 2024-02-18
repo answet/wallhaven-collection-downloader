@@ -1,6 +1,6 @@
 # wallhaven-downloader
 
-This script download a wallpaper collection from [Wallhaven](https://wallhaven.cc/)
+This script downloads all wallpapers from a [Wallhaven](https://wallhaven.cc/) user's collection.
 
 All wallpapers are saved in a folder with the name of the respective collection, this folder will be created in `Pictures/Wallpapers`.
 
@@ -18,4 +18,3 @@ You can install requirements running this command:
 ```
 $ pip install -r requirements.txt
 ```
-
