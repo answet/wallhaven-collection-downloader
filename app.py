@@ -57,7 +57,6 @@ def list_collections(collections,username):
 
 def main():
     parser = argparse.ArgumentParser(description="Este programa es para descargar colecciones de wallpapers de la pagina Wallhaven.")
-    parser.add_argument("-l","--link", help="Link directo de la coleccion",metavar="<link-to-collection>")
     parser.add_argument("-u","--user", help="Mostrar las colecciones de un usuario",metavar="<username>")
     args = parser.parse_args()
     
@@ -67,9 +66,6 @@ def main():
     if not os.path.exists(path_wallpapers):
         os.mkdir(path_wallpapers)
     os.chdir(path_wallpapers)
-
-    if args.link:
-        print("El link dado es:", args.link)
 
     if args.user:
         collections = requests.get(f'https://wallhaven.cc/api/v1/collections/{args.user}')
