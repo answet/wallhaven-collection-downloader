@@ -12,7 +12,7 @@ $ ./app.py <username>
 
 The collections belonging to the user will be listed, just indicate the number of the collection you want to download.
 
-![example](https://imgur.com/a/mXDoAue)
+![example](https://i.imgur.com/KAoGTKT.gif)
 
 ## Dependencies:
 This script depends on the Requests module.
