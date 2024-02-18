@@ -12,9 +12,9 @@ def download_wallpaper(url, name):
                 file.write(res.content)
             print("New wallpaper downloaded:", name)
         else:
-            print("Error al descargar:", res.status_code)
+            print("Error:", res.status_code)
     except Exception as e:
-        print("Ocurrio un error:",e)
+        print("Error:",e)
 
 
 def list_wallpapers(user,id,count):
@@ -34,6 +34,8 @@ def list_wallpapers(user,id,count):
         
             download_wallpaper(url, name_wall)
 
+        print(f'\nDone, collection downloaded in {os.getcwd()}')
+
 
 def list_collections(collections,username):
     collections = collections.json()["data"]
@@ -44,22 +46,18 @@ def list_collections(collections,username):
         option += 1
         print(f'{option}) {collection["label"]} : {collection["count"]} wallpapers\n{link}\n')
             
-    choice = int(input("Numero de coleccion: ")) - 1
-    if (choice >= 0) and (choice < option):
-        id = collections[choice]["id"]
-        count = collections[choice]["count"]
-        path = os.path.join(os.getcwd(),f"{collections[choice]['label']}")
+    number_collection = int(input("Collection: ")) - 1
+    if (number_collection >= 0) and (number_collection < option):
+        id = collections[number_collection]["id"]
+        count = collections[number_collection]["count"]
+        path = os.path.join(os.getcwd(),f"{collections[number_collection]['label']}")
         if not os.path.exists(path):
             os.mkdir(path)
         os.chdir(path)
         list_wallpapers(username,id,count)
 
 
-def main():
-    parser = argparse.ArgumentParser(description="Este programa es para descargar colecciones de wallpapers de la pagina Wallhaven.")
-    parser.add_argument("user", nargs="*", help="<username>")
-    args = parser.parse_args()
-    
+def change_directory():
     path_pictures = os.path.expanduser("~/Pictures")
     path_wallpapers = os.path.join(path_pictures,"Wallpapers")
 
@@ -67,11 +65,22 @@ def main():
         os.mkdir(path_wallpapers)
     os.chdir(path_wallpapers)
 
+
+def main():
+    parser = argparse.ArgumentParser(description="Enter a username, choose a collection, wait for the download, go to /Pictures/Wallpapers.")
+    parser.add_argument("user", nargs="*", help="<username>")
+    args = parser.parse_args()
+       
     if args.user:
         user = args.user[0]
         collections = requests.get(f'https://wallhaven.cc/api/v1/collections/{user}')
         if collections.status_code == 200:
+            change_directory()
             list_collections(collections,user)
+        else:
+            print(f'User {user} does not exist or cannot be found.')
+    else:
+        print("Use ./app.py -h for help.")
 
 if __name__== "__main__":
     main()
