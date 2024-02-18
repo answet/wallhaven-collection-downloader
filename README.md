@@ -13,8 +13,8 @@ $ ./app.py <username>
 The collections belonging to the user will be listed, just indicate the number of the collection you want to download.
 
 ## Dependencies:
-This script depends on Requests module.
-You can install requirements running this command:
+This script depends on the Requests module.
+You can install the requirements by running this command:
 ```
 $ pip install -r requirements.txt
 ```
