@@ -34,7 +34,7 @@ def list_wallpapers(user,id,count):
         
             download_wallpaper(url, name_wall)
 
-        print(f'\nDone, collection downloaded in {os.getcwd()}')
+    print(f'\nDone, collection downloaded in {os.getcwd()}')
 
 
 def list_collections(collections,username):
