@@ -5,6 +5,10 @@ This script downloads all wallpapers from a [Wallhaven](https://wallhaven.cc/) u
 All wallpapers are saved in a folder with the name of the respective collection, this folder will be created in `Pictures/Wallpapers`.
 
 ## How to Use:
+```
+$ chmod +x app.py
+```
+
 Pass as argument the user owner of the collection
 ```
 $ ./app.py <username>
